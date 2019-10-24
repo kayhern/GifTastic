@@ -1,16 +1,26 @@
 //this is a lot like the in class activity and some of the code will look a lot like it
 //it is pronounced "gif" like the peanut butter brand JIF ;)
 
-//PART ONE:
-//incorporate giphy API: my key is YvIPVJfdVoqpfFqTghWIjsoMK19EoSfc
 $(document).ready(function(){
 
-    let gifSubject = $(this).attr("random-shtuff");
-    let queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-    random-shtuff + "&api_key=YvIPVJfdVoqpfFqTghWIjsoMK19EoSfc&limit=10";
+//when the button is pressed function
+
+$("button").on("click", function(){
+ //defining the button being clicked at the top
+ let gifSubject = $(this).attr("random-shtuff");
+
+ //defining the URL I am querying using my own API key, the button referral from the HTML, ten results limit
+ //"random-shtuff" is what I am calling my buttons because I did not have a specific theme
+ let queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+ random-shtuff + "&api_key=YvIPVJfdVoqpfFqTghWIjsoMK19EoSfc&limit=10";
+
+ //the AJAX stuff should go here
 
 
 
+
+})
+   
 
 });
 //pre-populated ten buttons that call giphy API:
