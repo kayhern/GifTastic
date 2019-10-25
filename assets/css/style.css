@@ -6,3 +6,7 @@ header {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif !important;
     font-size: 20px !important;
 }
+
+button {
+    margin-left: 20px !important;
+}
