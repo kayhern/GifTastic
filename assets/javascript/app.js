@@ -29,6 +29,7 @@ function clearGifs() {
     //if another button is clicked then the previous buttons should clear
 }
 
+//if the gif is clicked it should animate
 
 $("button").on("click", function(){
  //defining the button being clicked at the top
@@ -67,8 +68,7 @@ $("button").on("click", function(){
 //THEN when another button is clicked it clears away the previous query
 
 //PART TWO:
-//use the giphy API to call on relevant gifs that will appear on the screen after the user enters the search term
-//display 10 images per button from the giphy api
+//make the search bar work
 
 //PART THREE:
 //when gif is clicked it animates
