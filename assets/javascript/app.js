@@ -70,4 +70,6 @@ $("button").on("click", function(){
 //PART TWO:
 //make the search bar work
 //PART THREE:
+//gif should not be animated during initial load
 //when gif is clicked it animates
+//fix rating/img html display if there is time
