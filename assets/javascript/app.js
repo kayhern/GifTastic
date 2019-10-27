@@ -1,8 +1,4 @@
-//this is a lot like the in class activity and some of the code will look a lot like it
-//it is pronounced "gif" like the peanut butter brand JIF ;)
-//when the button is pressed function
-
-//function to pre-populate the buttons source: https://stackoverflow.com/questions/18226598/how-to-add-a-button-dynamically-using-jquery
+//function to populate the buttons source: https://stackoverflow.com/questions/18226598/how-to-add-a-button-dynamically-using-jquery
 function addButtons() {
     let $catInput = $("<button random-shtuff='cats' type = 'button' class='btn btn-info'> Cats </button> ");
     $catInput.appendTo(("header"));
@@ -33,12 +29,87 @@ function clearGifs() {
     });
 };
 
+//when another button is clicked the previous gifs should disappear (from the search gifs)
 function clearSearchGifs() {
     $("#SubmitButton").click(function () {
         $("img").remove();
         $("span").remove();
     })
 };
+
+//add the search term button
+function addSearchButtons() {
+    let input = $("#my-input").val();
+    let newButton = $("<button random-shtuff='" + input + "' type = 'button' class='btn btn-info'>" + input + "</button>");
+    newButton.appendTo(("header"));
+    $("button").on("click", function () {
+        //defining the button being clicked at the top
+        let gifSubject = $(this).attr("random-shtuff");
+        //defining the URL I am querying using my own API key, the button referral from the HTML, ten results limit
+        //"random-shtuff" is what I am calling my buttons because I did not have a specific theme
+        let queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+            gifSubject + "&api_key=YvIPVJfdVoqpfFqTghWIjsoMK19EoSfc&limit=10";
+        clearGifs();
+        clearSearchGifs();
+        //the AJAX stuff should go here - get method to get the gifs
+        $.ajax({
+                url: queryURL,
+                method: "GET"
+            })
+            //then function after GET
+            .then(function (response) {
+                let results = response.data;
+                //borrowing function from class activity: https://harvard.bootcampcontent.com/Harvard-Coding-Boot-Camp/hu-cam-fsf-pt-09-2019-u-c/blob/master/Week_6/01-Activities/14-DynamicElements/Solved/dynamic-elements-solution.html
+                for (let i = 0; i < results.length; i++) {
+                    if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+                        let gifDiv = $("<div>");
+                        let rating = results[i].rating;
+                        let p = $("<span>").text("Rating " + rating);
+                        let gifImage = $("<img>");
+                        gifImage.attr("src", results[i].images.fixed_height.url);
+                        gifDiv.append(p);
+                        gifDiv.append(gifImage);
+                        $("#gifs-go-here").prepend(gifDiv);
+
+                    }
+                }
+            });
+    });
+};
+
+//clear search term in search bar
+
+$("#SubmitButton").on("click", function () {
+    clearGifs();
+    clearSearchGifs();
+    addSearchButtons();
+    let input = $("#my-input").val();
+    console.log(input);
+    let queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
+        input + "&api_key=YvIPVJfdVoqpfFqTghWIjsoMK19EoSfc&limit=10";
+    $.ajax({
+            url: queryURL,
+            method: "GET"
+        })
+        //then function after GET
+        .then(function (response) {
+            let results = response.data;
+            //borrowing function from class activity: https://harvard.bootcampcontent.com/Harvard-Coding-Boot-Camp/hu-cam-fsf-pt-09-2019-u-c/blob/master/Week_6/01-Activities/14-DynamicElements/Solved/dynamic-elements-solution.html
+            for (let i = 0; i < results.length; i++) {
+                if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
+                    let gifDiv = $("<div>");
+                    let rating = results[i].rating;
+                    let p = $("<span>").text("Rating " + rating);
+                    let gifImage = $("<img>");
+                    gifImage.attr("src", results[i].images.fixed_height.url);
+                    gifDiv.append(p);
+                    gifDiv.append(gifImage);
+                    $("#gifs-go-here").prepend(gifDiv);
+
+                }
+            }
+        });
+});
 
 //if the gif is clicked it should animate
 
@@ -79,36 +150,7 @@ $("button").on("click", function () {
 //PART TWO:
 //make the search bar work
 //making the search bar source: https://stackoverflow.com/questions/42798647/javascript-how-to-take-input-from-search-bar
-$("#SubmitButton").on("click", function () {
-    clearGifs();
-    clearSearchGifs();
-    let input = $("#my-input").val();
-    console.log(input);
-    let queryURL = "https://api.giphy.com/v1/gifs/search?q=" +
-        input + "&api_key=YvIPVJfdVoqpfFqTghWIjsoMK19EoSfc&limit=10";
-    $.ajax({
-            url: queryURL,
-            method: "GET"
-        })
-        //then function after GET
-        .then(function (response) {
-            let results = response.data;
-            //borrowing function from class activity: https://harvard.bootcampcontent.com/Harvard-Coding-Boot-Camp/hu-cam-fsf-pt-09-2019-u-c/blob/master/Week_6/01-Activities/14-DynamicElements/Solved/dynamic-elements-solution.html
-            for (let i = 0; i < results.length; i++) {
-                if (results[i].rating !== "r" && results[i].rating !== "pg-13") {
-                    let gifDiv = $("<div>");
-                    let rating = results[i].rating;
-                    let p = $("<span>").text("Rating " + rating);
-                    let gifImage = $("<img>");
-                    gifImage.attr("src", results[i].images.fixed_height.url);
-                    gifDiv.append(p);
-                    gifDiv.append(gifImage);
-                    $("#gifs-go-here").prepend(gifDiv);
 
-                }
-            }
-        });
-});
 
 //PART THREE:
 //gif should not be animated during initial load
