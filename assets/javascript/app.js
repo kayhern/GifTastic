@@ -66,7 +66,8 @@ function addSearchButtons() {
                         let rating = results[i].rating;
                         let p = $("<span>").text("Rating " + rating);
                         let gifImage = $("<img>");
-                        gifImage.attr("src", results[i].images.fixed_height.url);
+                        //make a still gif image: https://developers.giphy.com/docs/api/schema#image-object
+                        gifImage.attr("src", results[i].images.fixed_height_still.url);
                         gifDiv.append(p);
                         gifDiv.append(gifImage);
                         $("#gifs-go-here").prepend(gifDiv);
@@ -77,7 +78,9 @@ function addSearchButtons() {
     });
 };
 
-//clear search term in search bar
+//PART TWO:
+//make the search bar work
+//making the search bar source: https://stackoverflow.com/questions/42798647/javascript-how-to-take-input-from-search-bar
 
 $("#SubmitButton").on("click", function () {
     clearGifs();
@@ -101,7 +104,8 @@ $("#SubmitButton").on("click", function () {
                     let rating = results[i].rating;
                     let p = $("<span>").text("Rating " + rating);
                     let gifImage = $("<img>");
-                    gifImage.attr("src", results[i].images.fixed_height.url);
+                    //make a still gif image: https://developers.giphy.com/docs/api/schema#image-object
+                    gifImage.attr("src", results[i].images.fixed_height_still.url);
                     gifDiv.append(p);
                     gifDiv.append(gifImage);
                     $("#gifs-go-here").prepend(gifDiv);
@@ -137,7 +141,8 @@ $("button").on("click", function () {
                     let rating = results[i].rating;
                     let p = $("<span>").text("Rating " + rating);
                     let gifImage = $("<img>");
-                    gifImage.attr("src", results[i].images.fixed_height.url);
+                    //make a still gif image: https://developers.giphy.com/docs/api/schema#image-object
+                    gifImage.attr("src", results[i].images.fixed_height_still.url);
                     gifDiv.append(p);
                     gifDiv.append(gifImage);
                     $("#gifs-go-here").prepend(gifDiv);
@@ -147,9 +152,10 @@ $("button").on("click", function () {
         });
 });
 
-//PART TWO:
-//make the search bar work
-//making the search bar source: https://stackoverflow.com/questions/42798647/javascript-how-to-take-input-from-search-bar
+$("#img").on("click", function () {
+
+
+});
 
 
 //PART THREE:
