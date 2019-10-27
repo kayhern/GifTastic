@@ -71,7 +71,12 @@ function addSearchButtons() {
                         gifDiv.append(p);
                         gifDiv.append(gifImage);
                         $("#gifs-go-here").prepend(gifDiv);
+                        //when image is clicked it should hopefully animate
+                        $("img").click(function () {
+                            console.log("i was clicked")
+                            gifImage.attr("src", results[i].images.fixed_height.url);
 
+                        });
                     }
                 }
             });
@@ -109,13 +114,17 @@ $("#SubmitButton").on("click", function () {
                     gifDiv.append(p);
                     gifDiv.append(gifImage);
                     $("#gifs-go-here").prepend(gifDiv);
+                    //when image is clicked it should hopefully animate
+                    $("img").click(function () {
+                        console.log("i was clicked")
+                        gifImage.attr("src", results[i].images.fixed_height.url);
+
+                    });
 
                 }
             }
         });
 });
-
-//if the gif is clicked it should animate
 
 $("button").on("click", function () {
     //defining the button being clicked at the top
@@ -146,19 +155,14 @@ $("button").on("click", function () {
                     gifDiv.append(p);
                     gifDiv.append(gifImage);
                     $("#gifs-go-here").prepend(gifDiv);
+                    //when image is clicked it should hopefully animate
+                    $("img").click(function () {
+                        console.log("i was clicked")
+                        gifImage.attr("src", results[i].images.fixed_height.url);
 
+                    });
                 }
+
             }
         });
 });
-
-$("#img").on("click", function () {
-
-
-});
-
-
-//PART THREE:
-//gif should not be animated during initial load
-//when gif is clicked it animates
-//fix rating/img html display if there is time
