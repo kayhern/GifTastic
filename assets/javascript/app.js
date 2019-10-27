@@ -75,7 +75,6 @@ function addSearchButtons() {
                         $("img").click(function () {
                             console.log("i was clicked")
                             gifImage.attr("src", results[i].images.fixed_height.url);
-
                         });
                     }
                 }
@@ -118,7 +117,6 @@ $("#SubmitButton").on("click", function () {
                     $("img").click(function () {
                         console.log("i was clicked")
                         gifImage.attr("src", results[i].images.fixed_height.url);
-
                     });
 
                 }
@@ -159,7 +157,6 @@ $("button").on("click", function () {
                     $("img").click(function () {
                         console.log("i was clicked")
                         gifImage.attr("src", results[i].images.fixed_height.url);
-
                     });
                 }
 
